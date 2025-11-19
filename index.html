@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ShopEase - Your One Stop Shop</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Custom CSS Files -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/theme.css" />
+  </head>
+  <body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <a href="#"><i class="fas fa-phone"></i> +92 XXX XXXXXXX</a>
+            <a href="#"><i class="fas fa-envelope"></i> support@shopease.com</a>
+          </div>
+          <div>
+            <a href="#">Track Order</a>
+            <a href="#">Help</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <i class="fas fa-shopping-bag"></i> ShopEase
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="products.html">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+
+          <div class="d-flex align-items-center gap-3">
+            <a href="login.html" class="cart-icon">
+              <i class="fas fa-user"></i>
+            </a>
+
+            <a href="cart.html" class="cart-icon">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="cart-badge">3</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      class="hero-section"
+      style="
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 100px 0;
+        margin-top: 76px;
+      "
+    >
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <h1
+              style="font-size: 3.5rem; font-weight: 700; margin-bottom: 20px"
+            >
+              Summer Sale is Here!
+            </h1>
+            <p style="font-size: 1.3rem; margin-bottom: 30px; opacity: 0.95">
+              Get up to 50% off on all trending products. Limited time offer!
+            </p>
+            <a
+              href="products.html"
+              class="btn btn-lg"
+              style="
+                background: white;
+                color: #667eea;
+                padding: 15px 40px;
+                border-radius: 30px;
+                font-weight: 600;
+              "
+            >
+              Shop Now <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+          </div>
+          <div class="col-lg-6 text-center">
+            <i
+              class="fas fa-shopping-bag"
+              style="font-size: 15rem; opacity: 0.2"
+            ></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section style="padding: 80px 0">
+      <div class="container">
+        <h2 class="section-title">Shop By Category</h2>
+        <div class="row">
+          <div class="col-md-3 col-sm-6 mb-4">
+            <div
+              class="card hover-lift"
+              style="
+                text-align: center;
+                padding: 30px;
+                border-radius: 15px;
+                cursor: pointer;
+              "
+            >
+              <i
+                class="fas fa-laptop"
+                style="
+                  font-size: 4rem;
+                  color: var(--primary-color);
+                  margin-bottom: 20px;
+                "
+              ></i>
+              <h4>Electronics</h4>
+              <p>500+ Products</p>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6 mb-4">
+            <div
+              class="card hover-lift"
+              style="
+                text-align: center;
+                padding: 30px;
+                border-radius: 15px;
+                cursor: pointer;
+              "
+            >
+              <i
+                class="fas fa-tshirt"
+                style="
+                  font-size: 4rem;
+                  color: var(--primary-color);
+                  margin-bottom: 20px;
+                "
+              ></i>
+              <h4>Fashion</h4>
+              <p>800+ Products</p>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6 mb-4">
+            <div
+              class="card hover-lift"
+              style="
+                text-align: center;
+                padding: 30px;
+                border-radius: 15px;
+                cursor: pointer;
+              "
+            >
+              <i
+                class="fas fa-home"
+                style="
+                  font-size: 4rem;
+                  color: var(--primary-color);
+                  margin-bottom: 20px;
+                "
+              ></i>
+              <h4>Home & Living</h4>
+              <p>300+ Products</p>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6 mb-4">
+            <div
+              class="card hover-lift"
+              style="
+                text-align: center;
+                padding: 30px;
+                border-radius: 15px;
+                cursor: pointer;
+              "
+            >
+              <i
+                class="fas fa-futbol"
+                style="
+                  font-size: 4rem;
+                  color: var(--primary-color);
+                  margin-bottom: 20px;
+                "
+              ></i>
+              <h4>Sports</h4>
+              <p>200+ Products</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section style="padding: 80px 0; background: var(--light-color)">
+      <div class="container">
+        <h2 class="section-title">Featured Products</h2>
+        <div class="row">
+          <!-- Product 1 -->
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card product-card">
+              <span
+                class="badge badge-danger"
+                style="position: absolute; top: 15px; right: 15px; z-index: 1"
+                >-30%</span
+              >
+              <div
+                style="
+                  width: 100%;
+                  height: 250px;
+                  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 5rem;
+                  color: white;
+                "
+              >
+                <i class="fas fa-laptop"></i>
+              </div>
+              <div class="card-body">
+                <small class="text-muted text-uppercase">Electronics</small>
+                <h5 class="mt-2">Premium Laptop Pro</h5>
+                <div class="text-warning mb-2">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <small class="text-muted">(128)</small>
+                </div>
+                <div class="d-flex align-items-center gap-2 mb-3">
+                  <span class="h4 text-danger mb-0">$699</span>
+                  <span class="text-muted text-decoration-line-through"
+                    >$999</span
+                  >
+                </div>
+                <button class="btn btn-primary w-100">
+                  <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 2 -->
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card product-card">
+              <span
+                class="badge badge-warning"
+                style="position: absolute; top: 15px; right: 15px; z-index: 1"
+                >Hot</span
+              >
+              <div
+                style="
+                  width: 100%;
+                  height: 250px;
+                  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 5rem;
+                  color: white;
+                "
+              >
+                <i class="fas fa-headphones"></i>
+              </div>
+              <div class="card-body">
+                <small class="text-muted text-uppercase">Audio</small>
+                <h5 class="mt-2">Wireless Headphones</h5>
+                <div class="text-warning mb-2">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <small class="text-muted">(256)</small>
+                </div>
+                <div class="d-flex align-items-center gap-2 mb-3">
+                  <span class="h4 text-danger mb-0">$149</span>
+                  <span class="text-muted text-decoration-line-through"
+                    >$199</span
+                  >
+                </div>
+                <button class="btn btn-primary w-100">
+                  <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 3 -->
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card product-card">
+              <span
+                class="badge badge-info"
+                style="position: absolute; top: 15px; right: 15px; z-index: 1"
+                >New</span
+              >
+              <div
+                style="
+                  width: 100%;
+                  height: 250px;
+                  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 5rem;
+                  color: white;
+                "
+              >
+                <i class="fas fa-mobile-alt"></i>
+              </div>
+              <div class="card-body">
+                <small class="text-muted text-uppercase">Mobile</small>
+                <h5 class="mt-2">Smartphone X Pro</h5>
+                <div class="text-warning mb-2">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                  <small class="text-muted">(89)</small>
+                </div>
+                <div class="mb-3">
+                  <span class="h4 text-danger mb-0">$899</span>
+                </div>
+                <button class="btn btn-primary w-100">
+                  <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 4 -->
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card product-card">
+              <span
+                class="badge badge-danger"
+                style="position: absolute; top: 15px; right: 15px; z-index: 1"
+                >-20%</span
+              >
+              <div
+                style="
+                  width: 100%;
+                  height: 250px;
+                  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 5rem;
+                  color: white;
+                "
+              >
+                <i class="fas fa-camera"></i>
+              </div>
+              <div class="card-body">
+                <small class="text-muted text-uppercase">Camera</small>
+                <h5 class="mt-2">Digital Camera 4K</h5>
+                <div class="text-warning mb-2">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <small class="text-muted">(64)</small>
+                </div>
+                <div class="d-flex align-items-center gap-2 mb-3">
+                  <span class="h4 text-danger mb-0">$549</span>
+                  <span class="text-muted text-decoration-line-through"
+                    >$699</span
+                  >
+                </div>
+                <button class="btn btn-primary w-100">
+                  <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 5 -->
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card product-card">
+              <div
+                style="
+                  width: 100%;
+                  height: 250px;
+                  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 5rem;
+                  color: white;
+                "
+              >
+                <i class="fas fa-watch"></i>
+              </div>
+              <div class="card-body">
+                <small class="text-muted text-uppercase">Wearable</small>
+                <h5 class="mt-2">Smart Watch Series 5</h5>
+                <div class="text-warning mb-2">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <small class="text-muted">(198)</small>
+                </div>
+                <div class="mb-3">
+                  <span class="h4 text-danger mb-0">$299</span>
+                </div>
+                <button class="btn btn-primary w-100">
+                  <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 6 -->
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card product-card">
+              <span
+                class="badge badge-danger"
+                style="position: absolute; top: 15px; right: 15px; z-index: 1"
+                >-15%</span
+              >
+              <div
+                style="
+                  width: 100%;
+                  height: 250px;
+                  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 5rem;
+                  color: white;
+                "
+              >
+                <i class="fas fa-keyboard"></i>
+              </div>
+              <div class="card-body">
+                <small class="text-muted text-uppercase">Accessories</small>
+                <h5 class="mt-2">Mechanical Keyboard</h5>
+                <div class="text-warning mb-2">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <small class="text-muted">(75)</small>
+                </div>
+                <div class="d-flex align-items-center gap-2 mb-3">
+                  <span class="h4 text-danger mb-0">$85</span>
+                  <span class="text-muted text-decoration-line-through"
+                    >$100</span
+                  >
+                </div>
+                <button class="btn btn-primary w-100">
+                  <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 7 -->
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card product-card">
+              <span
+                class="badge badge-warning"
+                style="position: absolute; top: 15px; right: 15px; z-index: 1"
+                >Hot</span
+              >
+              <div
+                style="
+                  width: 100%;
+                  height: 250px;
+                  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 5rem;
+                  color: white;
+                "
+              >
+                <i class="fas fa-gamepad"></i>
+              </div>
+              <div class="card-body">
+                <small class="text-muted text-uppercase">Gaming</small>
+                <h5 class="mt-2">Gaming Controller Pro</h5>
+                <div class="text-warning mb-2">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                  <small class="text-muted">(142)</small>
+                </div>
+                <div class="mb-3">
+                  <span class="h4 text-danger mb-0">$59</span>
+                </div>
+                <button class="btn btn-primary w-100">
+                  <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 8 -->
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card product-card">
+              <span
+                class="badge badge-danger"
+                style="position: absolute; top: 15px; right: 15px; z-index: 1"
+                >-25%</span
+              >
+              <div
+                style="
+                  width: 100%;
+                  height: 250px;
+                  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 5rem;
+                  color: white;
+                "
+              >
+                <i class="fas fa-tablet-alt"></i>
+              </div>
+              <div class="card-body">
+                <small class="text-muted text-uppercase">Tablet</small>
+                <h5 class="mt-2">Tablet Pro 11 inch</h5>
+                <div class="text-warning mb-2">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <small class="text-muted">(93)</small>
+                </div>
+                <div class="d-flex align-items-center gap-2 mb-3">
+                  <span class="h4 text-danger mb-0">$412</span>
+                  <span class="text-muted text-decoration-line-through"
+                    >$549</span
+                  >
+                </div>
+                <button class="btn btn-primary w-100">
+                  <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section style="padding: 80px 0">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 text-center mb-4">
+            <i
+              class="fas fa-shipping-fast"
+              style="
+                font-size: 3rem;
+                color: var(--secondary-color);
+                margin-bottom: 20px;
+              "
+            ></i>
+            <h4>Free Shipping</h4>
+            <p class="text-muted">On orders over $50</p>
+          </div>
+          <div class="col-md-3 text-center mb-4">
+            <i
+              class="fas fa-undo"
+              style="
+                font-size: 3rem;
+                color: var(--secondary-color);
+                margin-bottom: 20px;
+              "
+            ></i>
+            <h4>Easy Returns</h4>
+            <p class="text-muted">30-day return policy</p>
+          </div>
+          <div class="col-md-3 text-center mb-4">
+            <i
+              class="fas fa-lock"
+              style="
+                font-size: 3rem;
+                color: var(--secondary-color);
+                margin-bottom: 20px;
+              "
+            ></i>
+            <h4>Secure Payment</h4>
+            <p class="text-muted">100% secure transactions</p>
+          </div>
+          <div class="col-md-3 text-center mb-4">
+            <i
+              class="fas fa-headset"
+              style="
+                font-size: 3rem;
+                color: var(--secondary-color);
+                margin-bottom: 20px;
+              "
+            ></i>
+            <h4>24/7 Support</h4>
+            <p class="text-muted">Always here to help</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section
+      style="
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 60px 0;
+      "
+    >
+      <div class="container text-center">
+        <h2 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 15px">
+          Subscribe to Our Newsletter
+        </h2>
+        <p style="font-size: 1.2rem; margin-bottom: 30px; opacity: 0.9">
+          Get exclusive deals and updates delivered to your inbox
+        </p>
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div class="d-flex gap-2">
+              <input
+                type="email"
+                class="form-control"
+                placeholder="Enter your email"
+                style="padding: 15px 25px; border-radius: 30px"
+              />
+              <button
+                class="btn btn-light"
+                style="
+                  padding: 15px 40px;
+                  border-radius: 30px;
+                  font-weight: 600;
+                  white-space: nowrap;
+                "
+              >
+                Subscribe
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 mb-4">
+            <h3 class="footer-title">
+              <i class="fas fa-shopping-bag me-2"></i>ShopEase
+            </h3>
+            <p style="color: #ccc; line-height: 1.8">
+              Your trusted online shopping destination. We offer quality
+              products at competitive prices with excellent customer service.
+            </p>
+            <div style="display: flex; gap: 15px; margin-top: 20px">
+              <a href="#" style="color: white; font-size: 1.5rem"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="#" style="color: white; font-size: 1.5rem"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="#" style="color: white; font-size: 1.5rem"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" style="color: white; font-size: 1.5rem"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6 mb-4">
+            <h3 class="footer-title">Quick Links</h3>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="products.html">Products</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="#">Blog</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mb-4">
+            <h3 class="footer-title">Customer Service</h3>
+            <ul class="footer-links">
+              <li><a href="#">Track Order</a></li>
+              <li><a href="#">Returns</a></li>
+              <li><a href="#">Shipping Info</a></li>
+              <li><a href="#">FAQs</a></li>
+              <li><a href="#">Size Guide</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mb-4">
+            <h3 class="footer-title">Newsletter</h3>
+            <p style="color: #ccc; margin-bottom: 15px">
+              Subscribe to get special offers and updates
+            </p>
+            <div style="display: flex; gap: 10px">
+              <input
+                type="email"
+                placeholder="Your email"
+                style="flex: 1; padding: 10px; border: none; border-radius: 5px"
+              />
+              <button
+                style="
+                  padding: 10px 20px;
+                  background: var(--primary-color);
+                  color: white;
+                  border: none;
+                  border-radius: 5px;
+                  cursor: pointer;
+                "
+              >
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>
+            &copy; 2025 ShopEase. All rights reserved. |
+            <a href="#" style="color: var(--primary-color)">Privacy Policy</a> |
+            <a href="#" style="color: var(--primary-color)">Terms of Service</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JavaScript Files -->
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+  </body>
+</html>

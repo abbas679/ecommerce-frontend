@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products - ShopEase</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Custom CSS -->
+    <style>
+      :root {
+        --primary-color: #ff6b6b;
+        --secondary-color: #4ecdc4;
+        --dark-color: #2d3436;
+        --light-color: #f8f9fa;
+        --text-color: #2d3436;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: var(--text-color);
+        background: #f5f5f5;
+      }
+
+      /* Navbar Styles */
+      .top-bar {
+        background: var(--dark-color);
+        color: white;
+        padding: 8px 0;
+        font-size: 0.9rem;
+      }
+
+      .top-bar a {
+        color: white;
+        text-decoration: none;
+        margin: 0 10px;
+      }
+
+      .navbar {
+        background: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 15px 0;
+      }
+
+      .navbar-brand {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary-color) !important;
+      }
+
+      .navbar-nav .nav-link {
+        color: var(--dark-color);
+        font-weight: 500;
+        margin: 0 15px;
+      }
+
+      .cart-icon {
+        position: relative;
+        font-size: 1.5rem;
+        color: var(--dark-color);
+      }
+
+      .cart-badge {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+      }
+
+      /* Breadcrumb */
+      .breadcrumb-section {
+        background: white;
+        padding: 20px 0;
+        margin-top: 76px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+
+      .breadcrumb {
+        margin: 0;
+      }
+
+      /* Sidebar Filters */
+      .sidebar {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        margin-bottom: 30px;
+      }
+
+      .filter-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary-color);
+      }
+
+      .filter-group {
+        margin-bottom: 25px;
+      }
+
+      .filter-group h5 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: var(--dark-color);
+      }
+
+      .filter-option {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        cursor: pointer;
+      }
+
+      .filter-option input[type="checkbox"],
+      .filter-option input[type="radio"] {
+        margin-right: 10px;
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+      }
+
+      .filter-option label {
+        cursor: pointer;
+        margin: 0;
+        flex: 1;
+      }
+
+      .filter-option span {
+        color: #888;
+        font-size: 0.9rem;
+      }
+
+      /* Price Range Slider */
+      .price-range {
+        margin: 20px 0;
+      }
+
+      .price-input {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+      }
+
+      .price-input input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        outline: none;
+      }
+
+      .price-input input:focus {
+        border-color: var(--primary-color);
+      }
+
+      /* Color Filters */
+      .color-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .color-box {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        cursor: pointer;
+        border: 3px solid transparent;
+        transition: all 0.3s;
+      }
+
+      .color-box:hover,
+      .color-box.active {
+        border-color: var(--dark-color);
+        transform: scale(1.1);
+      }
+
+      .btn-clear-filters {
+        width: 100%;
+        background: var(--light-color);
+        color: var(--dark-color);
+        border: none;
+        padding: 12px;
+        border-radius: 8px;
+        font-weight: 600;
+        margin-top: 20px;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .btn-clear-filters:hover {
+        background: var(--primary-color);
+        color: white;
+      }
+
+      /* Products Header */
+      .products-header {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .results-count {
+        font-weight: 600;
+        color: var(--dark-color);
+      }
+
+      .view-options {
+        display: flex;
+        gap: 10px;
+      }
+
+      .view-btn {
+        width: 40px;
+        height: 40px;
+        border: 2px solid #ddd;
+        background: white;
+        border-radius: 5px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+      }
+
+      .view-btn.active,
+      .view-btn:hover {
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+      }
+
+      .sort-dropdown {
+        padding: 10px 15px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        outline: none;
+        cursor: pointer;
+        font-weight: 500;
+      }
+
+      .sort-dropdown:focus {
+        border-color: var(--primary-color);
+      }
+
+      /* Product Grid */
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 25px;
+      }
+
+      .product-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s;
+        position: relative;
+      }
+
+      .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .product-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: var(--primary-color);
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        z-index: 1;
+      }
+
+      .badge-new {
+        background: #4ecdc4;
+      }
+
+      .badge-hot {
+        background: #ff9f43;
+      }
+
+      .wishlist-btn {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: white;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 1;
+        transition: all 0.3s;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .wishlist-btn:hover {
+        background: var(--primary-color);
+        color: white;
+      }
+
+      .wishlist-btn.active {
+        background: var(--primary-color);
+        color: white;
+      }
+
+      .product-image {
+        width: 100%;
+        height: 280px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 5rem;
+        color: white;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .product-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .product-card:hover .product-overlay {
+        opacity: 1;
+      }
+
+      .overlay-btn {
+        background: white;
+        color: var(--dark-color);
+        border: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .overlay-btn:hover {
+        background: var(--primary-color);
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      .product-info {
+        padding: 20px;
+      }
+
+      .product-category {
+        color: #888;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        font-weight: 500;
+      }
+
+      .product-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 10px 0;
+        color: var(--dark-color);
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .product-rating {
+        color: #ffa500;
+        margin-bottom: 10px;
+        font-size: 0.9rem;
+      }
+
+      .product-rating span {
+        color: #888;
+        margin-left: 5px;
+      }
+
+      .product-price {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 15px;
+      }
+
+      .current-price {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+      }
+
+      .old-price {
+        font-size: 1.1rem;
+        color: #888;
+        text-decoration: line-through;
+      }
+
+      .stock-status {
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+      }
+
+      .in-stock {
+        color: #2ecc71;
+      }
+
+      .low-stock {
+        color: #f39c12;
+      }
+
+      .out-stock {
+        color: #e74c3c;
+      }
+
+      .btn-add-cart {
+        width: 100%;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 12px;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+
+      .btn-add-cart:hover {
+        background: #ff5252;
+        transform: translateY(-2px);
+      }
+
+      .btn-add-cart:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+      }
+
+      /* Pagination */
+      .pagination-section {
+        margin-top: 50px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .pagination {
+        display: flex;
+        gap: 10px;
+        list-style: none;
+        padding: 0;
+      }
+
+      .pagination li {
+        margin: 0;
+      }
+
+      .pagination button {
+        padding: 10px 15px;
+        border: 2px solid #ddd;
+        background: white;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s;
+      }
+
+      .pagination button:hover {
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+      }
+
+      .pagination button.active {
+        background: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+      }
+
+      /* Footer */
+      footer {
+        background: var(--dark-color);
+        color: white;
+        padding: 60px 0 20px;
+        margin-top: 80px;
+      }
+
+      .footer-title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+
+      .footer-links {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+
+      .footer-links a {
+        color: #ccc;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-links a:hover {
+        color: var(--primary-color);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: #ccc;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .sidebar {
+          margin-bottom: 30px;
+        }
+
+        .products-header {
+          text-align: center;
+        }
+
+        .products-grid {
+          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <a href="#"><i class="fas fa-phone"></i> +92 XXX XXXXXXX</a>
+            <a href="#"><i class="fas fa-envelope"></i> support@shopease.com</a>
+          </div>
+          <div>
+            <a href="#">Track Order</a>
+            <a href="#">Help</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <i class="fas fa-shopping-bag"></i> ShopEase
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="products.html">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+
+          <div class="d-flex align-items-center gap-3">
+            <a href="login.html" class="cart-icon">
+              <i class="fas fa-user"></i>
+            </a>
+
+            <a href="cart.html" class="cart-icon">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="cart-badge">3</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb-section">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Products</li>
+          </ol>
+        </nav>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section style="padding: 40px 0">
+      <div class="container">
+        <div class="row">
+          <!-- Sidebar Filters -->
+          <div class="col-lg-3">
+            <div class="sidebar">
+              <h3 class="filter-title">Filters</h3>
+
+              <!-- Categories -->
+              <div class="filter-group">
+                <h5>Categories</h5>
+                <div class="filter-option">
+                  <input type="checkbox" id="cat1" checked />
+                  <label for="cat1">Electronics</label>
+                  <span>(125)</span>
+                </div>
+                <div class="filter-option">
+                  <input type="checkbox" id="cat2" />
+                  <label for="cat2">Fashion</label>
+                  <span>(234)</span>
+                </div>
+                <div class="filter-option">
+                  <input type="checkbox" id="cat3" />
+                  <label for="cat3">Home & Living</label>
+                  <span>(89)</span>
+                </div>
+                <div class="filter-option">
+                  <input type="checkbox" id="cat4" />
+                  <label for="cat4">Sports</label>
+                  <span>(67)</span>
+                </div>
+                <div class="filter-option">
+                  <input type="checkbox" id="cat5" />
+                  <label for="cat5">Books</label>
+                  <span>(156)</span>
+                </div>
+              </div>
+
+              <!-- Price Range -->
+              <div class="filter-group">
+                <h5>Price Range</h5>
+                <div class="price-range">
+                  <input
+                    type="range"
+                    class="form-range"
+                    min="0"
+                    max="5000"
+                    value="2500"
+                    id="priceRange"
+                  />
+                  <div class="price-input">
+                    <input type="number" placeholder="Min" value="0" />
+                    <input type="number" placeholder="Max" value="2500" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Brand -->
+              <div class="filter-group">
+                <h5>Brand</h5>
+                <div class="filter-option">
+                  <input type="checkbox" id="brand1" />
+                  <label for="brand1">Apple</label>
+                  <span>(45)</span>
+                </div>
+                <div class="filter-option">
+                  <input type="checkbox" id="brand2" />
+                  <label for="brand2">Samsung</label>
+                  <span>(38)</span>
+                </div>
+                <div class="filter-option">
+                  <input type="checkbox" id="brand3" />
+                  <label for="brand3">Sony</label>
+                  <span>(29)</span>
+                </div>
+                <div class="filter-option">
+                  <input type="checkbox" id="brand4" />
+                  <label for="brand4">Nike</label>
+                  <span>(52)</span>
+                </div>
+                <div class="filter-option">
+                  <input type="checkbox" id="brand5" />
+                  <label for="brand5">Adidas</label>
+                  <span>(41)</span>
+                </div>
+              </div>
+
+              <!-- Rating -->
+              <div class="filter-group">
+                <h5>Rating</h5>
+                <div class="filter-option">
+                  <input type="radio" name="rating" id="rating5" />
+                  <label for="rating5">
+                    <i class="fas fa-star" style="color: #ffa500"></i>
+                    <i class="fas fa-star" style="color: #ffa500"></i>
+                    <i class="fas fa-star" style="color: #ffa500"></i>
+                    <i class="fas fa-star" style="color: #ffa500"></i>
+                    <i class="fas fa-star" style="color: #ffa500"></i>
+                  </label>
+                </div>
+                <div class="filter-option">
+                  <input type="radio" name="rating" id="rating4" />
+                  <label for="rating4">
+                    <i class="fas fa-star" style="color: #ffa500"></i>
+                    <i class="fas fa-star" style="color: #ffa500"></i>
+                    <i class="fas fa-star" style="color: #ffa500"></i>
+                    <i class="fas fa-star" style="color: #ffa500"></i>
+                    <i class="far fa-star" style="color: #ffa500"></i>
+                    & Up
+                  </label>
+                </div>
+                <div class="filter-option">
+                  <input type="radio" name="rating" id="rating3" />
+                  <label for="rating3">
+                    <i class="fas fa-star" style="color: #ffa500"></i>
+                    <i class="fas fa-star" style="color: #ffa500"></i>
+                    <i class="fas fa-star" style="color: #ffa500"></i>
+                    <i class="far fa-star" style="color: #ffa500"></i>
+                    <i class="far fa-star" style="color: #ffa500"></i>
+                    & Up
+                  </label>
+                </div>
+              </div>
+
+              <!-- Color -->
+              <div class="filter-group">
+                <h5>Color</h5>
+                <div class="color-options">
+                  <div class="color-box" style="background: #000000"></div>
+                  <div
+                    class="color-box"
+                    style="background: #ffffff; border: 1px solid #ddd"
+                  ></div>
+                  <div class="color-box" style="background: #ff6b6b"></div>
+                  <div class="color-box" style="background: #4ecdc4"></div>
+                  <div class="color-box" style="background: #ffa500"></div>
+                  <div class="color-box" style="background: #6c5ce7"></div>
+                  <div class="color-box" style="background: #00b894"></div>
+                  <div class="color-box" style="background: #fdcb6e"></div>
+                </div>
+              </div>
+
+              <button class="btn-clear-filters" onclick="clearFilters()">
+                <i class="fas fa-times me-2"></i>Clear All Filters
+              </button>
+            </div>
+          </div>
+
+          <!-- Products Grid -->
+          <div class="col-lg-9">
+            <!-- Products Header -->
+            <div class="products-header">
+              <div class="results-count">
+                Showing <strong>1-24</strong> of <strong>125</strong> results
+              </div>
+
+              <div class="d-flex align-items-center gap-3 flex-wrap">
+                <div class="view-options">
+                  <button class="view-btn active">
+                    <i class="fas fa-th"></i>
+                  </button>
+                  <button class="view-btn">
+                    <i class="fas fa-list"></i>
+                  </button>
+                </div>
+
+                <select
+                  class="sort-dropdown"
+                  id="sortSelect"
+                  onchange="sortProducts()"
+                >
+                  <option value="featured">Featured</option>
+                  <option value="price-low">Price: Low to High</option>
+                  <option value="price-high">Price: High to Low</option>
+                  <option value="rating">Top Rated</option>
+                  <option value="newest">Newest First</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="products-grid" id="productsGrid">
+              <!-- Product 1 -->
+              <div class="product-card" data-price="699" data-rating="4">
+                <span class="product-badge">-30%</span>
+                <button class="wishlist-btn" onclick="toggleWishlist(this)">
+                  <i class="far fa-heart"></i>
+                </button>
+                <div class="product-image">
+                  <i class="fas fa-laptop"></i>
+                  <div class="product-overlay">
+                    <button class="overlay-btn" onclick="quickView()">
+                      <i class="fas fa-eye me-2"></i>Quick View
+                    </button>
+                  </div>
+                </div>
+                <div class="product-info">
+                  <div class="product-category">Electronics</div>
+                  <h3 class="product-title">Premium Laptop Pro 15 inch</h3>
+                  <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <span>(128)</span>
+                  </div>
+                  <div class="product-price">
+                    <span class="current-price">$699</span>
+                    <span class="old-price">$999</span>
+                  </div>
+                  <div class="stock-status in-stock">
+                    <i class="fas fa-check-circle"></i> In Stock
+                  </div>
+                  <button class="btn-add-cart" onclick="addToCart(this)">
+                    <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                  </button>
+                </div>
+              </div>
+
+              <!-- Product 2 -->
+              <div class="product-card" data-price="149" data-rating="5">
+                <span class="product-badge badge-hot">Hot</span>
+                <button class="wishlist-btn" onclick="toggleWishlist(this)">
+                  <i class="far fa-heart"></i>
+                </button>
+                <div class="product-image">
+                  <i class="fas fa-headphones"></i>
+                  <div class="product-overlay">
+                    <button class="overlay-btn" onclick="quickView()">
+                      <i class="fas fa-eye me-2"></i>Quick View
+                    </button>
+                  </div>
+                </div>
+                <div class="product-info">
+                  <div class="product-category">Audio</div>
+                  <h3 class="product-title">
+                    Wireless Noise-Cancelling Headphones
+                  </h3>
+                  <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <span>(256)</span>
+                  </div>
+                  <div class="product-price">
+                    <span class="current-price">$149</span>
+                    <span class="old-price">$199</span>
+                  </div>
+                  <div class="stock-status in-stock">
+                    <i class="fas fa-check-circle"></i> In Stock
+                  </div>
+                  <button class="btn-add-cart" onclick="addToCart(this)">
+                    <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                  </button>
+                </div>
+              </div>
+
+              <!-- Product 3 -->
+              <div class="product-card" data-price="899" data-rating="4">
+                <span class="product-badge badge-new">New</span>
+                <button class="wishlist-btn" onclick="toggleWishlist(this)">
+                  <i class="far fa-heart"></i>
+                </button>
+                <div class="product-image">
+                  <i class="fas fa-mobile-alt"></i>
+                  <div class="product-overlay">
+                    <button class="overlay-btn" onclick="quickView()">
+                      <i class="fas fa-eye me-2"></i>Quick View
+                    </button>
+                  </div>
+                </div>
+                <div class="product-info"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

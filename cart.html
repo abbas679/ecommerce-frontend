@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Cart - ShopEase</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Custom CSS -->
+    <style>
+      :root {
+        --primary-color: #ff6b6b;
+        --secondary-color: #4ecdc4;
+        --dark-color: #2d3436;
+        --light-color: #f8f9fa;
+        --text-color: #2d3436;
+        --success-color: #2ecc71;
+        --warning-color: #f39c12;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: var(--text-color);
+        background: #f5f5f5;
+      }
+
+      /* Navbar Styles */
+      .top-bar {
+        background: var(--dark-color);
+        color: white;
+        padding: 8px 0;
+        font-size: 0.9rem;
+      }
+
+      .top-bar a {
+        color: white;
+        text-decoration: none;
+        margin: 0 10px;
+      }
+
+      .navbar {
+        background: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 15px 0;
+      }
+
+      .navbar-brand {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary-color) !important;
+      }
+
+      .navbar-nav .nav-link {
+        color: var(--dark-color);
+        font-weight: 500;
+        margin: 0 15px;
+      }
+
+      .cart-icon {
+        position: relative;
+        font-size: 1.5rem;
+        color: var(--dark-color);
+      }
+
+      .cart-badge {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+      }
+
+      /* Breadcrumb */
+      .breadcrumb-section {
+        background: white;
+        padding: 20px 0;
+        margin-top: 76px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+
+      /* Cart Section */
+      .cart-section {
+        padding: 40px 0 80px;
+      }
+
+      .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: var(--dark-color);
+      }
+
+      .cart-count {
+        color: #666;
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+      }
+
+      /* Cart Table */
+      .cart-table {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        margin-bottom: 30px;
+      }
+
+      .cart-table-header {
+        background: var(--light-color);
+        padding: 20px 30px;
+        font-weight: 600;
+        border-bottom: 2px solid #e0e0e0;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr 50px;
+        gap: 20px;
+        align-items: center;
+      }
+
+      .cart-item {
+        padding: 30px;
+        border-bottom: 1px solid #f0f0f0;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr 50px;
+        gap: 20px;
+        align-items: center;
+        transition: background 0.3s;
+      }
+
+      .cart-item:hover {
+        background: #fafafa;
+      }
+
+      .cart-item:last-child {
+        border-bottom: none;
+      }
+
+      .product-info {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      }
+
+      .product-image {
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 2.5rem;
+        flex-shrink: 0;
+      }
+
+      .product-details h4 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: var(--dark-color);
+      }
+
+      .product-meta {
+        color: #666;
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+      }
+
+      .product-variant {
+        display: inline-block;
+        padding: 3px 10px;
+        background: var(--light-color);
+        border-radius: 15px;
+        font-size: 0.85rem;
+        margin-right: 5px;
+      }
+
+      .product-price {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+      }
+
+      /* Quantity Controls */
+      .quantity-controls {
+        display: flex;
+        align-items: center;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        overflow: hidden;
+        width: fit-content;
+      }
+
+      .qty-btn {
+        width: 40px;
+        height: 40px;
+        border: none;
+        background: white;
+        cursor: pointer;
+        font-size: 1.2rem;
+        font-weight: 700;
+        transition: all 0.3s;
+        color: var(--dark-color);
+      }
+
+      .qty-btn:hover {
+        background: var(--primary-color);
+        color: white;
+      }
+
+      .qty-btn:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+      }
+
+      .qty-input {
+        width: 50px;
+        height: 40px;
+        border: none;
+        text-align: center;
+        font-weight: 700;
+        font-size: 1rem;
+        border-left: 1px solid #e0e0e0;
+        border-right: 1px solid #e0e0e0;
+      }
+
+      .item-total {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--dark-color);
+      }
+
+      .remove-btn {
+        background: none;
+        border: none;
+        color: #999;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: all 0.3s;
+        padding: 5px;
+      }
+
+      .remove-btn:hover {
+        color: var(--primary-color);
+        transform: scale(1.2);
+      }
+
+      /* Action Buttons */
+      .cart-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+
+      .btn-continue {
+        padding: 12px 30px;
+        background: white;
+        border: 2px solid var(--primary-color);
+        color: var(--primary-color);
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .btn-continue:hover {
+        background: var(--primary-color);
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      .btn-clear {
+        padding: 12px 30px;
+        background: #e74c3c;
+        border: none;
+        color: white;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .btn-clear:hover {
+        background: #c0392b;
+        transform: translateY(-2px);
+      }
+
+      /* Cart Summary */
+      .cart-summary {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        position: sticky;
+        top: 100px;
+      }
+
+      .summary-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 25px;
+        color: var(--dark-color);
+      }
+
+      .summary-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 0;
+        border-bottom: 1px solid #f0f0f0;
+      }
+
+      .summary-row:last-of-type {
+        border-bottom: 2px solid #e0e0e0;
+        margin-bottom: 20px;
+      }
+
+      .summary-label {
+        font-weight: 500;
+        color: #666;
+      }
+
+      .summary-value {
+        font-weight: 600;
+        color: var(--dark-color);
+      }
+
+      .summary-total {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+        font-size: 1.5rem;
+      }
+
+      .total-label {
+        font-weight: 700;
+        color: var(--dark-color);
+      }
+
+      .total-value {
+        font-weight: 700;
+        color: var(--primary-color);
+        font-size: 2rem;
+      }
+
+      .savings-badge {
+        background: #d4edda;
+        color: #155724;
+        padding: 10px 15px;
+        border-radius: 8px;
+        text-align: center;
+        margin-bottom: 20px;
+        font-weight: 600;
+      }
+
+      .btn-checkout {
+        width: 100%;
+        padding: 18px;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: all 0.3s;
+        margin-bottom: 15px;
+      }
+
+      .btn-checkout:hover {
+        background: #ff5252;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
+      }
+
+      /* Coupon Code */
+      .coupon-section {
+        margin-bottom: 25px;
+      }
+
+      .coupon-title {
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: var(--dark-color);
+      }
+
+      .coupon-input-group {
+        display: flex;
+        gap: 10px;
+      }
+
+      .coupon-input {
+        flex: 1;
+        padding: 12px 15px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        outline: none;
+        font-weight: 500;
+      }
+
+      .coupon-input:focus {
+        border-color: var(--primary-color);
+      }
+
+      .btn-apply {
+        padding: 12px 25px;
+        background: var(--secondary-color);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .btn-apply:hover {
+        background: #45b8b0;
+      }
+
+      /* Security Features */
+      .security-features {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding-top: 20px;
+        border-top: 1px solid #f0f0f0;
+      }
+
+      .security-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #666;
+        font-size: 0.9rem;
+      }
+
+      .security-item i {
+        color: var(--success-color);
+      }
+
+      /* Empty Cart */
+      .empty-cart {
+        text-align: center;
+        padding: 80px 20px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .empty-cart-icon {
+        font-size: 8rem;
+        color: #ddd;
+        margin-bottom: 30px;
+      }
+
+      .empty-cart h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: var(--dark-color);
+      }
+
+      .empty-cart p {
+        font-size: 1.1rem;
+        color: #666;
+        margin-bottom: 30px;
+      }
+
+      /* Recommended Products */
+      .recommended-section {
+        margin-top: 60px;
+      }
+
+      .section-title {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 30px;
+        text-align: center;
+        color: var(--dark-color);
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+      }
+
+      .product-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s;
+      }
+
+      .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .product-card-image {
+        width: 100%;
+        height: 200px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 4rem;
+      }
+
+      .product-card-info {
+        padding: 20px;
+      }
+
+      .product-card-title {
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: var(--dark-color);
+      }
+
+      .product-card-price {
+        color: var(--primary-color);
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+      }
+
+      .btn-add-small {
+        width: 100%;
+        padding: 10px;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .btn-add-small:hover {
+        background: #ff5252;
+      }
+
+      /* Footer */
+      footer {
+        background: var(--dark-color);
+        color: white;
+        padding: 60px 0 20px;
+        margin-top: 80px;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: #ccc;
+      }
+
+      /* Responsive */
+      @media (max-width: 992px) {
+        .cart-table-header {
+          display: none;
+        }
+
+        .cart-item {
+          grid-template-columns: 1fr;
+          gap: 15px;
+          padding: 20px;
+        }
+
+        .product-info {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .quantity-controls {
+          margin: 0 auto;
+        }
+
+        .cart-summary {
+          position: static;
+          margin-top: 30px;
+        }
+
+        .cart-actions {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .btn-continue,
+        .btn-clear {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .page-title {
+          font-size: 2rem;
+        }
+
+        .product-image {
+          width: 80px;
+          height: 80px;
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <a href="#"><i class="fas fa-phone"></i> +92 XXX XXXXXXX</a>
+            <a href="#"><i class="fas fa-envelope"></i> support@shopease.com</a>
+          </div>
+          <div>
+            <a href="#">Track Order</a>
+            <a href="#">Help</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <i class="fas fa-shopping-bag"></i> ShopEase
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="products.html">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+
+          <div class="d-flex align-items-center gap-3">
+            <a href="login.html" class="cart-icon">
+              <i class="fas fa-user"></i>
+            </a>
+
+            <a href="cart.html" class="cart-icon">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="cart-badge" id="cartBadge">3</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb-section">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+              Shopping Cart
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </section>
+
+    <!-- Cart Section -->
+    <section class="cart-section">
+      <div class="container">
+        <h1 class="page-title">Shopping Cart</h1>
+        <p class="cart-count">
+          You have <strong id="itemCount">3</strong> items in your cart
+        </p>
+
+        <div class="row">
+          <!-- Cart Items -->
+          <div class="col-lg-8">
+            <div class="cart-table" id="cartContainer">
+              <!-- Cart Header -->
+              <div class="cart-table-header">
+                <div>Product</div>
+                <div>Price</div>
+                <div>Quantity</div>
+                <div>Total</div>
+                <div></div>
+              </div>
+
+              <!-- Cart Item 1 -->
+              <div class="cart-item" data-id="1" data-price="699">
+                <div class="product-info">
+                  <div class="product-image">
+                    <i class="fas fa-laptop"></i>
+                  </div>
+                  <div class="product-details">
+                    <h4>Premium Laptop Pro 15 inch</h4>
+                    <div class="product-meta">
+                      <span class="product-variant">Space Gray</span>
+                      <span class="product-variant">512GB</span>
+                    </div>
+                    <div class="product-meta">SKU: LAP-PRO-512</div>
+                  </div>
+                </div>
+                <div class="product-price">$699</div>
+                <div class="quantity-controls">
+                  <button class="qty-btn" onclick="updateQuantity(1, -1)">
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    class="qty-input"
+                    value="1"
+                    min="1"
+                    max="10"
+                    readonly
+                  />
+                  <button class="qty-btn" onclick="updateQuantity(1, 1)">
+                    +
+                  </button>
+                </div>
+                <div class="item-total">$699</div>
+                <button class="remove-btn" onclick="removeItem(1)">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+
+              <!-- Cart Item 2 -->
+              <div class="cart-item" data-id="2" data-price="149">
+                <div class="product-info">
+                  <div class="product-image">
+                    <i class="fas fa-headphones"></i>
+                  </div>
+                  <div class="product-details">
+                    <h4>Wireless Noise-Cancelling Headphones</h4>
+                    <div class="product-meta">
+                      <span class="product-variant">Black</span>
+                    </div>
+                    <div class="product-meta">SKU: HEAD-WRL-BLK</div>
+                  </div>
+                </div>
+                <div class="product-price">$149</div>
+                <div class="quantity-controls">
+                  <button class="qty-btn" onclick="updateQuantity(2, -1)">
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    class="qty-input"
+                    value="1"
+                    min="1"
+                    max="10"
+                    readonly
+                  />
+                  <button class="qty-btn" onclick="updateQuantity(2, 1)">
+                    +
+                  </button>
+                </div>
+                <div class="item-total">$149</div>
+                <button class="remove-btn" onclick="removeItem(2)">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+
+              <!-- Cart Item 3 -->
+              <div class="cart-item" data-id="3" data-price="899">
+                <div class="product-info">
+                  <div class="product-image">
+                    <i class="fas fa-mobile-alt"></i>
+                  </div>
+                  <div class="product-details">
+                    <h4>Smartphone X Pro</h4>
+                    <div class="product-meta">
+                      <span class="product-variant">Midnight Blue</span>
+                      <span class="product-variant">256GB</span>
+                    </div>
+                    <div class="product-meta">SKU: PHN-XPRO-256</div>
+                  </div>
+                </div>
+                <div class="product-price">$899</div>
+                <div class="quantity-controls">
+                  <button class="qty-btn" onclick="updateQuantity(3, -1)">
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    class="qty-input"
+                    value="1"
+                    min="1"
+                    max="10"
+                    readonly
+                  />
+                  <button class="qty-btn" onclick="updateQuantity(3, 1)">
+                    +
+                  </button>
+                </div>
+                <div class="item-total">$899</div>
+                <button class="remove-btn" onclick="removeItem(3)">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Cart Actions -->
+            <div class="cart-actions">
+              <a href="products.html" class="btn-continue">
+                <i class="fas fa-arrow-left"></i>
+                Continue Shopping
+              </a>
+              <button class="btn-clear" onclick="clearCart()">
+                <i class="fas fa-trash me-2"></i>Clear Cart
+              </button>
+            </div>
+          </div>
+
+          <!-- Cart Summary -->
+          <div class="col-lg-4">
+            <div class="cart-summary">
+              <h3 class="summary-title">Order Summary</h3>
+
+              <!-- Coupon Section -->
+              <div class="coupon-section">
+                <div class="coupon-title">Have a coupon code?</div>
+                <div class="coupon-input-group">
+                  <input
+                    type="text"
+                    class="coupon-input"
+                    placeholder="Enter code"
+                    id="couponInput"
+                  />
+                  <button class="btn-apply" onclick="applyCoupon()">
+                    Apply
+                  </button>
+                </div>
+              </div>
+
+              <!-- Summary Details -->
+              <div class="summary-row">
+                <span class="summary-label">Subtotal</span>
+                <span class="summary-value" id="subtotal">$1,747.00</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-label">Shipping</span>
+                <span class="summary-value" id="shipping">Free</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-label">Tax (10%)</span>
+                <span class="summary-value" id="tax">$174.70</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-label">Discount</span>
+                <span
+                  class="summary-value"
+                  style="color: var(--success-color)"
+                  id="discount"
+                  >-$0.00</span
+                >
+              </div>
+
+              <div class="savings-badge">
+                <i class="fas fa-tag me-2"></i>You're saving $300 on this order!
+              </div>
+
+              <div class="summary-total">
+                <span class="total-label">Total</span>
+                <span class="total-value" id="total">$1,921.70</span>
+              </div>
+
+              <button class="btn-checkout" onclick="proceedToCheckout()">
+                <i class="fas fa-lock me-2"></i>Proceed to Checkout
+              </button>
+
+              <div
+                style="
+                  text-align: center;
+                  color: #666;
+                  font-size: 0.9rem;
+                  margin-bottom: 20px;
+                "
+              >
+                or
+                <a
+                  href="products.html"
+                  style="color: var(--primary-color); font-weight: 600"
+                  >Continue Shopping</a
+                >
+              </div>
+
+              <!-- Security Features -->
+              <div class="security-features">
+                <div class="security-item">
+                  <i class="fas fa-shield-alt"></i>
+                  <span>Secure Checkout</span>
+                </div>
+                <div class="security-item">
+                  <i class="fas fa-lock"></i>
+                  <span>SSL Encrypted</span>
+                </div>
+                <div class="security-item">
+                  <i class="fas fa-credit-card"></i>
+                  <span>Multiple Payment Options</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recommended Products -->
+        <div class="recommended-section">
+          <h2 class="section-title">You May Also Like</h2>
+          <div class="products-grid">
+            <div class="product-card">
+              <div class="product-card-image">
+                <i class="fas fa-tablet-alt"></i>
+              </div>
+              <div class="product-card-info">
+                <h4 class="product-card-title">Tablet Pro 11 inch</h4>
+                <div class="product-card-price">$549</div>
+                <button class="btn-add-small" onclick="addRecommended(1)">
+                  <i class="fas fa-cart-plus me-2"></i>Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-card-image">
+                <i class="fas fa-camera"></i>
+              </div>
+              <div class="product-card-info">
+                <h4 class="product-card-title">Digital Camera 4K</h4>
+                <div class="product-card-price">$549</div>
+                <button class="btn-add-small" onclick="addRecommended(2)">
+                  <i class="fas fa-cart-plus me-2"></i>Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-card-image">
+                <i class="fas fa-watch"></i>
+              </div>
+              <div class="product-card-info">
+                <h4 class="product-card-title">Smart Watch Series 5</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

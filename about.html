@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - ShopEase</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Custom CSS -->
+    <style>
+      :root {
+        --primary-color: #ff6b6b;
+        --secondary-color: #4ecdc4;
+        --dark-color: #2d3436;
+        --light-color: #f8f9fa;
+        --text-color: #2d3436;
+        --success-color: #2ecc71;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: var(--text-color);
+        background: #f5f5f5;
+      }
+
+      /* Navbar Styles */
+      .top-bar {
+        background: var(--dark-color);
+        color: white;
+        padding: 8px 0;
+        font-size: 0.9rem;
+      }
+
+      .top-bar a {
+        color: white;
+        text-decoration: none;
+        margin: 0 10px;
+      }
+
+      .navbar {
+        background: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 15px 0;
+      }
+
+      .navbar-brand {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary-color) !important;
+      }
+
+      .navbar-nav .nav-link {
+        color: var(--dark-color);
+        font-weight: 500;
+        margin: 0 15px;
+      }
+
+      .cart-icon {
+        position: relative;
+        font-size: 1.5rem;
+        color: var(--dark-color);
+      }
+
+      .cart-badge {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+      }
+
+      /* Hero Section */
+      .about-hero {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 120px 0 80px;
+        margin-top: 76px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .about-hero::before {
+        content: "";
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        top: -150px;
+        right: -150px;
+      }
+
+      .about-hero::after {
+        content: "";
+        position: absolute;
+        width: 350px;
+        height: 350px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        bottom: -100px;
+        left: -100px;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+      }
+
+      .hero-title {
+        font-size: 4rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+
+      .hero-subtitle {
+        font-size: 1.5rem;
+        opacity: 0.95;
+        max-width: 700px;
+        margin: 0 auto;
+        line-height: 1.8;
+      }
+
+      /* Story Section */
+      .story-section {
+        padding: 100px 0;
+        background: white;
+      }
+
+      .section-title {
+        font-size: 2.8rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: var(--dark-color);
+      }
+
+      .section-subtitle {
+        font-size: 1.2rem;
+        color: #666;
+        margin-bottom: 40px;
+        line-height: 1.8;
+      }
+
+      .story-image {
+        width: 100%;
+        height: 450px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 8rem;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      }
+
+      /* Stats Section */
+      .stats-section {
+        padding: 80px 0;
+        background: var(--light-color);
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+      }
+
+      .stat-card {
+        background: white;
+        padding: 40px 30px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .stat-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, var(--primary-color), #ff8787);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        color: white;
+        font-size: 2.5rem;
+      }
+
+      .stat-number {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 10px;
+      }
+
+      .stat-label {
+        font-size: 1.1rem;
+        color: #666;
+        font-weight: 600;
+      }
+
+      /* Values Section */
+      .values-section {
+        padding: 100px 0;
+        background: white;
+      }
+
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 40px;
+      }
+
+      .value-card {
+        text-align: center;
+        padding: 30px;
+      }
+
+      .value-icon {
+        width: 100px;
+        height: 100px;
+        background: var(--light-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 25px;
+        color: var(--primary-color);
+        font-size: 3rem;
+        transition: all 0.3s;
+      }
+
+      .value-card:hover .value-icon {
+        background: linear-gradient(135deg, var(--primary-color), #ff8787);
+        color: white;
+        transform: scale(1.1);
+      }
+
+      .value-card h3 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: var(--dark-color);
+      }
+
+      .value-card p {
+        color: #666;
+        line-height: 1.8;
+        font-size: 1.05rem;
+      }
+
+      /* Team Section */
+      .team-section {
+        padding: 100px 0;
+        background: var(--light-color);
+      }
+
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 40px;
+      }
+
+      .team-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s;
+      }
+
+      .team-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .team-image {
+        width: 100%;
+        height: 320px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 6rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .team-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+        padding: 60px 20px 20px;
+        transform: translateY(100%);
+        transition: all 0.3s;
+      }
+
+      .team-card:hover .team-overlay {
+        transform: translateY(0);
+      }
+
+      .social-links {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+      }
+
+      .social-link {
+        width: 40px;
+        height: 40px;
+        background: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary-color);
+        text-decoration: none;
+        transition: all 0.3s;
+      }
+
+      .social-link:hover {
+        background: var(--primary-color);
+        color: white;
+        transform: scale(1.1);
+      }
+
+      .team-info {
+        padding: 25px;
+        text-align: center;
+      }
+
+      .team-name {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: var(--dark-color);
+      }
+
+      .team-role {
+        color: var(--primary-color);
+        font-weight: 600;
+        font-size: 1.05rem;
+      }
+
+      /* Timeline Section */
+      .timeline-section {
+        padding: 100px 0;
+        background: white;
+      }
+
+      .timeline {
+        position: relative;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 4px;
+        height: 100%;
+        background: var(--primary-color);
+      }
+
+      .timeline-item {
+        margin-bottom: 60px;
+        position: relative;
+      }
+
+      .timeline-content {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        width: calc(50% - 40px);
+        position: relative;
+      }
+
+      .timeline-item:nth-child(odd) .timeline-content {
+        margin-left: auto;
+      }
+
+      .timeline-item:nth-child(even) .timeline-content {
+        margin-right: auto;
+      }
+
+      .timeline-date {
+        position: absolute;
+        top: 30px;
+        width: 80px;
+        height: 80px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 700;
+        font-size: 1.2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
+        box-shadow: 0 0 0 8px white;
+      }
+
+      .timeline-content h3 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: var(--dark-color);
+      }
+
+      .timeline-content p {
+        color: #666;
+        line-height: 1.8;
+      }
+
+      /* CTA Section */
+      .cta-section {
+        padding: 100px 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        text-align: center;
+      }
+
+      .cta-title {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+
+      .cta-text {
+        font-size: 1.3rem;
+        margin-bottom: 40px;
+        opacity: 0.95;
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .btn-cta {
+        padding: 18px 50px;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 1.1rem;
+        text-decoration: none;
+        transition: all 0.3s;
+        display: inline-block;
+      }
+
+      .btn-primary-cta {
+        background: white;
+        color: var(--primary-color);
+      }
+
+      .btn-primary-cta:hover {
+        background: var(--light-color);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .btn-outline-cta {
+        background: transparent;
+        color: white;
+        border: 3px solid white;
+      }
+
+      .btn-outline-cta:hover {
+        background: white;
+        color: var(--primary-color);
+        transform: translateY(-3px);
+      }
+
+      /* Footer */
+      footer {
+        background: var(--dark-color);
+        color: white;
+        padding: 60px 0 20px;
+      }
+
+      .footer-title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+
+      .footer-links {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+
+      .footer-links a {
+        color: #ccc;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-links a:hover {
+        color: var(--primary-color);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: #ccc;
+      }
+
+      /* Responsive */
+      @media (max-width: 992px) {
+        .hero-title {
+          font-size: 3rem;
+        }
+
+        .timeline::before {
+          left: 30px;
+        }
+
+        .timeline-content {
+          width: calc(100% - 80px);
+          margin-left: 80px !important;
+        }
+
+        .timeline-date {
+          left: 30px;
+          transform: translateX(0);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.5rem;
+        }
+
+        .hero-subtitle {
+          font-size: 1.2rem;
+        }
+
+        .section-title {
+          font-size: 2.2rem;
+        }
+
+        .cta-title {
+          font-size: 2.2rem;
+        }
+
+        .cta-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .btn-cta {
+          width: 100%;
+          max-width: 300px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <a href="#"><i class="fas fa-phone"></i> +92 XXX XXXXXXX</a>
+            <a href="#"><i class="fas fa-envelope"></i> support@shopease.com</a>
+          </div>
+          <div>
+            <a href="#">Track Order</a>
+            <a href="#">Help</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <i class="fas fa-shopping-bag"></i> ShopEase
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="products.html">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+
+          <div class="d-flex align-items-center gap-3">
+            <a href="login.html" class="cart-icon">
+              <i class="fas fa-user"></i>
+            </a>
+
+            <a href="cart.html" class="cart-icon">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="cart-badge">3</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title">About ShopEase</h1>
+          <p class="hero-subtitle">
+            We're on a mission to make online shopping easy, enjoyable, and
+            accessible for everyone. Discover quality products at competitive
+            prices with exceptional customer service.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="story-section">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 mb-4 mb-lg-0">
+            <h2 class="section-title">Our Story</h2>
+            <p class="section-subtitle">
+              ShopEase was founded in 2015 with a simple vision: to create the
+              most customer-friendly online shopping experience. What started as
+              a small team with big dreams has grown into a thriving e-commerce
+              platform serving thousands of happy customers.
+            </p>
+            <p class="section-subtitle">
+              We believe that shopping online should be simple, secure, and
+              satisfying. That's why we've built a platform that prioritizes
+              your needs - from easy navigation and detailed product information
+              to fast shipping and responsive customer support.
+            </p>
+            <p class="section-subtitle">
+              Today, we're proud to offer a curated selection of quality
+              products across multiple categories, all backed by our commitment
+              to excellence and customer satisfaction.
+            </p>
+          </div>
+          <div class="col-lg-6">
+            <div class="story-image">
+              <i class="fas fa-shopping-bag"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="section-title">Our Achievements</h2>
+          <p class="section-subtitle">Numbers that speak for themselves</p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="stat-number">50K+</div>
+            <div class="stat-label">Happy Customers</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-box"></i>
+            </div>
+            <div class="stat-number">100K+</div>
+            <div class="stat-label">Products Delivered</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-store"></i>
+            </div>
+            <div class="stat-number">5K+</div>
+            <div class="stat-label">Products Available</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-award"></i>
+            </div>
+            <div class="stat-number">15+</div>
+            <div class="stat-label">Industry Awards</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Values Section -->
+    <section class="values-section">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="section-title">Our Core Values</h2>
+          <p class="section-subtitle">
+            The principles that guide everything we do
+          </p>
+        </div>
+
+        <div class="values-grid">
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-heart"></i>
+            </div>
+            <h3>Customer First</h3>
+            <p>
+              Your satisfaction is our top priority. We go above and beyond to
+              ensure every shopping experience exceeds your expectations.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Quality Guaranteed</h3>
+            <p>
+              We carefully curate our product selection to ensure you receive
+              only the highest quality items from trusted brands.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <h3>Fast & Reliable</h3>
+            <p>
+              From browsing to delivery, we ensure speed without compromising
+              quality. Your time is valuable, and we respect that.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-leaf"></i>
+            </div>
+            <h3>Sustainability</h3>
+            <p>
+              We're committed to reducing our environmental impact through
+              eco-friendly packaging and sustainable business practices.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-handshake"></i>
+            </div>
+            <h3>Transparency</h3>
+            <p>
+              Honest communication and clear policies. We believe in building
+              trust through transparency in everything we do.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <h3>Innovation</h3>
+            <p>
+              We continuously evolve and improve our platform to provide you
+              with the best online shopping experience possible.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="section-title">Meet Our Team</h2>
+          <p class="section-subtitle">The passionate people behind ShopEase</p>
+        </div>
+
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="team-image">
+              <i class="fas fa-user-tie"></i>
+              <div class="team-overlay">
+                <div class="social-links">
+                  <a href="#" class="social-link"
+                    ><i class="fab fa-linkedin-in"></i
+                  ></a>
+                  <a href="#" class="social-link"
+                    ><i class="fab fa-twitter"></i
+                  ></a>
+                  <a href="#" class="social-link"
+                    ><i class="fas fa-envelope"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+            <div class="team-info">
+              <h3 class="team-name">John Anderson</h3>
+              <p class="team-role">CEO & Founder</p>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-image">
+              <i class="fas fa-user-tie"></i>
+              <div class="team-overlay">
+                <div class="social-links">
+                  <a href="#" class="social-link"
+                    ><i class="fab fa-linkedin-in"></i
+                  ></a>
+                  <a href="#" class="social-link"
+                    ><i class="fab fa-twitter"></i
+                  ></a>
+                  <a href="#" class="social-link"
+                    ><i class="fas fa-envelope"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+            <div class="team-info">
+              <h3 class="team-name">Sarah Mitchell</h3>
+              <p class="team-role">Chief Technology Officer</p>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-image">
+              <i class="fas fa-user-tie"></i>
+              <div class="team-overlay">
+                <div class="social-links">
+                  <a href="#" class="social-link"
+                    ><i class="fab fa-linkedin-in"></i
+                  ></a>
+                  <a href="#" class="social-link"
+                    ><i class="fab fa-twitter"></i
+                  ></a>
+                  <a href="#" class="social-link"
+                    ><i class="fas fa-envelope"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+            <div class="team-info">
+              <h3 class="team-name">Michael Chen</h3>
+              <p class="team-role">Head of Operations</p>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-image">
+              <i class="fas fa-user-tie"></i>
+              <div class="team-overlay">
+                <div class="social-links">
+                  <a href="#" class="social-link"
+                    ><i class="fab fa-linkedin-in"></i
+                  ></a>
+                  <a href="#" class="social-link"
+                    ><i class="fab fa-twitter"></i
+                  ></a>
+                  <a href="#" class="social-link"
+                    ><i class="fas fa-envelope"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+            <div class="team-info">
+              <h3 class="team-name">Emily Rodriguez</h3>
+              <p class="team-role">Customer Success Manager</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="section-title">Our Journey</h2>
+          <p class="section-subtitle">Key milestones in our growth story</p>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">2015</div>
+            <div class="timeline-content">
+              <h3>The Beginning</h3>
+              <p>
+                ShopEase was founded with a vision to revolutionize online
+                shopping. Started in a small office with just 5 team members and
+                a dream.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">2017</div>
+            <div class="timeline-content">
+              <h3>Rapid Growth</h3>
+              <p>
+                Reached 10,000 customers and expanded our product catalog to
+                over 1,000 items. Opened our first warehouse facility.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">2019</div>
+            <div class="timeline-content">
+              <h3>Going National</h3>
+              <p>
+                Expanded delivery services nationwide and launched our mobile
+                app. Team grew to 50+ employees.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">2021</div>
+            <div class="timeline-content">
+              <h3>Award Recognition</h3>
+              <p>
+                Won "Best E-Commerce Platform" award and achieved 50,000+
+                satisfied customers milestone.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">2025</div>
+            <div class="timeline-content">
+              <h3>Looking Forward</h3>
+              <p>
+                Continuing to innovate and expand internationally while
+                maintaining our commitment to customer satisfaction and quality.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <h2 class="cta-title">Ready to Start Shopping?</h2>
+        <p class="cta-text">
+          Join thousands of satisfied customers and discover amazing products at
+          great prices
+        </p>
+        <div class="cta-buttons">
+          <a href="products.html" class="btn-cta btn-primary-cta">
+            <i class="fas fa-shopping-bag me-2"></i>Browse Products
+          </a>
+          <a href="contact.html" class="btn-cta btn-outline-cta">
+            <i class="fas fa-envelope me-2"></i>Contact Us
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 mb-4">
+            <h3 class="footer-title">
+              <i class="fas fa-shopping-bag me-2"></i>ShopEase
+            </h3>
+            <p style="color: #ccc; line-height: 1.8">
+              Your trusted online shopping destination. We offer quality
+              products at competitive prices with excellent customer service.
+            </p>
+            <div style="display: flex; gap: 15px; margin-top: 20px">
+              <a
+                href="#"
+                style="color: white; font-size: 1.5rem; transition: color 0.3s"
+                onmouseover="this.style.color='var(--primary-color)'"
+                onmouseout="this.style.color='white'"
+              >
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a
+                href="#"
+                style="color: white; font-size: 1.5rem; transition: color 0.3s"
+                onmouseover="this.style.color='var(--primary-color)'"
+                onmouseout="this.style.color='white'"
+              >
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a
+                href="#"
+                style="color: white; font-size: 1.5rem; transition: color 0.3s"
+                onmouseover="this.style.color='var(--primary-color)'"
+                onmouseout="this.style.color='white'"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a
+                href="#"
+                style="color: white; font-size: 1.5rem; transition: color 0.3s"
+                onmouseover="this.style.color='var(--primary-color)'"
+                onmouseout="this.style.color='white'"
+              >
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6 mb-4">
+            <h3 class="footer-title">Quick Links</h3>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="products.html">Products</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="#">Blog</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mb-4">
+            <h3 class="footer-title">Customer Service</h3>
+            <ul class="footer-links">
+              <li><a href="#">Track Order</a></li>
+              <li><a href="#">Returns</a></li>
+              <li><a href="#">Shipping Info</a></li>
+              <li><a href="#">FAQs</a></li>
+              <li><a href="#">Size Guide</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mb-4">
+            <h3 class="footer-title">Newsletter</h3>
+            <p style="color: #ccc; margin-bottom: 15px">
+              Subscribe to get special offers and updates
+            </p>
+            <div style="display: flex; gap: 10px">
+              <input
+                type="email"
+                placeholder="Your email"
+                style="
+                  flex: 1;
+                  padding: 10px;
+                  border: none;
+                  border-radius: 5px;
+                  outline: none;
+                "
+              />
+              <button
+                style="
+                  padding: 10px 20px;
+                  background: var(--primary-color);
+                  color: white;
+                  border: none;
+                  border-radius: 5px;
+                  cursor: pointer;
+                  transition: all 0.3s;
+                "
+                onmouseover="this.style.background='#ff5252'"
+                onmouseout="this.style.background='var(--primary-color)'"
+              >
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>
+            &copy; 2025 ShopEase. All rights reserved. |
+            <a
+              href="#"
+              style="color: var(--primary-color); text-decoration: none"
+              >Privacy Policy</a
+            >
+            |
+            <a
+              href="#"
+              style="color: var(--primary-color); text-decoration: none"
+              >Terms of Service</a
+            >
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          const href = this.getAttribute("href");
+          if (href !== "#" && href !== "") {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+              target.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }
+          }
+        });
+      });
+
+      // Counter animation for stats
+      function animateCounter(element, target, duration = 2000) {
+        let start = 0;
+        const increment = target / (duration / 16);
+        const timer = setInterval(() => {
+          start += increment;
+          if (start >= target) {
+            element.textContent = formatNumber(target);
+            clearInterval(timer);
+          } else {
+            element.textContent = formatNumber(Math.floor(start));
+          }
+        }, 16);
+      }
+
+      function formatNumber(num) {
+        if (num >= 1000) {
+          return (num / 1000).toFixed(0) + "K+";
+        }
+        return num + "+";
+      }
+
+      // Intersection Observer for counter animation
+      const observerOptions = {
+        threshold: 0.5,
+        rootMargin: "0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (
+            entry.isIntersecting &&
+            !entry.target.classList.contains("counted")
+          ) {
+            entry.target.classList.add("counted");
+            const statNumbers = entry.target.querySelectorAll(".stat-number");
+            statNumbers.forEach((stat) => {
+              const target = parseInt(stat.textContent.replace(/[^0-9]/g, ""));
+              animateCounter(stat, target);
+            });
+          }
+        });
+      }, observerOptions);
+
+      // Observe stats section
+      const statsSection = document.querySelector(".stats-section");
+      if (statsSection) {
+        observer.observe(statsSection);
+      }
+
+      // Add scroll animation to sections
+      const sections = document.querySelectorAll(
+        ".story-section, .values-section, .team-section, .timeline-section"
+      );
+
+      const sectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = "0";
+              entry.target.style.transform = "translateY(30px)";
+              entry.target.style.transition = "all 0.8s ease";
+
+              setTimeout(() => {
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+              }, 100);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      sections.forEach((section) => {
+        sectionObserver.observe(section);
+      });
+
+      // Newsletter subscription
+      const newsletterBtn = document.querySelector("footer button");
+      if (newsletterBtn) {
+        newsletterBtn.addEventListener("click", function () {
+          const emailInput = this.previousElementSibling;
+          const email = emailInput.value.trim();
+
+          if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            alert("Thank you for subscribing to our newsletter!");
+            emailInput.value = "";
+          } else {
+            alert("Please enter a valid email address");
+          }
+        });
+      }
+
+      // Add parallax effect to hero section
+      window.addEventListener("scroll", function () {
+        const hero = document.querySelector(".about-hero");
+        if (hero) {
+          const scrolled = window.pageYOffset;
+          const heroContent = hero.querySelector(".hero-content");
+          if (heroContent && scrolled < hero.offsetHeight) {
+            heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
+            heroContent.style.opacity = 1 - scrolled / hero.offsetHeight;
+          }
+        }
+      });
+
+      // Add hover effect to team cards
+      const teamCards = document.querySelectorAll(".team-card");
+      teamCards.forEach((card) => {
+        card.addEventListener("mouseenter", function () {
+          this.querySelector(".team-image").style.transform = "scale(1.05)";
+          this.querySelector(".team-image").style.transition =
+            "transform 0.3s ease";
+        });
+
+        card.addEventListener("mouseleave", function () {
+          this.querySelector(".team-image").style.transform = "scale(1)";
+        });
+      });
+
+      // Timeline animation on scroll
+      const timelineItems = document.querySelectorAll(".timeline-item");
+
+      const timelineObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+              }, index * 200);
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+
+      timelineItems.forEach((item) => {
+        item.style.opacity = "0";
+        item.style.transform = "translateY(30px)";
+        item.style.transition = "all 0.6s ease";
+        timelineObserver.observe(item);
+      });
+    </script>
+  </body>
+</html>
